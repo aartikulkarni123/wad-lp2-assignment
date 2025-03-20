@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #eadc97, #569ae8);
+            color: #333;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            border-radius: 15px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .card-header {
+            background-color: #9abbe4;
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            box-shadow: none;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .btn {
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff4a3f;
+        }
+
+        .user-list table {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .user-list th,
+        .user-list td {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .user-list table,
+        .user-list th,
+        .user-list td {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        .user-list th {
+            background-color: #ff6f61;
+            color: white;
+        }
+
+        .user-list tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .user-list tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .alert {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                margin: 0 15px;
+            }
+
+            .btn {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- User Registration Form -->
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>User Registration</h2>
+            </div>
+            <div class="card-body">
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="username">Name:</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="alert alert-success" id="successMessage" style="display: none;">
+            User registered successfully!
+        </div>
+    </div>
+
+    <!-- User List Page -->
+    <div class="container user-list">
+        <div class="card">
+            <div class="card-header">
+                <h2>Registered Users</h2>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- User data will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to Handle Registration and Data Storage -->
+    <script>
+        // Check if there are existing users in localStorage
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Registration Form Submission Handler
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form refresh
+
+            // Get user input
+            let username = document.getElementById('username').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            // Create a new user object
+            let user = {
+                username: username,
+                email: email,
+                password: password,
+            };
+
+            // Simulate AJAX POST request (without a real server)
+            setTimeout(function () {
+                // Push the user data to the array
+                users.push(user);
+
+                // Save the updated user list to localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+
+                // Clear the form
+                document.getElementById('registrationForm').reset();
+
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+
+                // Hide the success message after 3 seconds
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+            }, 500);
+        });
+
+        // Load user list on page load
+        function loadUserList() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const tableBody = document.getElementById('userTableBody');
+
+            // Clear existing table data
+            tableBody.innerHTML = '';
+
+            // Populate the table with users
+            users.forEach((user, index) => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email}</td>
+                    <td>${user.password}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Load the user list when the page loads
+        window.onload = loadUserList;
+    </script>
+
+</body>
+
+</html>
