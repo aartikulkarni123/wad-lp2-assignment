@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #2c3e50;
+            color: white;
+            padding-top: 30px;
+            padding-left: 20px;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 28px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+
+        /* Content Section */
+        .content {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+        }
+
+        /* Card Styling */
+        .card {
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            color: white;
+            font-size: 20px;
+            padding: 15px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* Colorful Headers for Cards */
+        .card-header.sales {
+            background-color: #ff6f61;
+        }
+
+        .card-header.users {
+            background-color: #00bfae;
+        }
+
+        .card-header.orders {
+            background-color: #ffb54d;
+        }
+
+        .card-header.notifications {
+            background-color: #4a90e2;
+        }
+
+        .card-body {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-body h3 {
+            font-size: 30px;
+            color: #2980b9;
+        }
+
+        .card-body p {
+            font-size: 16px;
+        }
+
+        /* Grid Layout for Cards */
+        .card-deck .card {
+            margin-bottom: 20px;
+        }
+
+        /* Media Query for Small Screens */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
+            .card-deck {
+                display: block;
+            }
+
+            .card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="#">Dashboard</a>
+        <a href="#">E-commerce</a>
+        <a href="#">College</a>
+        <a href="#">Exams</a>
+        <a href="#">Users</a>
+        <a href="#">Settings</a>
+        <a href="#">Notifications</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <h1>Welcome to Your Admin Dashboard</h1>
+            <input type="text" class="form-control" placeholder="Search...">
+        </div>
+
+        <!-- Cards Section (Statistics) -->
+        <div class="card-deck">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header sales">
+                        Total Sales
+                    </div>
+                    <div class="card-body">
+                        <h3>$12,000</h3>
+                        <p>This month</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header users">
+                        Users Registered
+                    </div>
+                    <div class="card-body">
+                        <h3>1,250</h3>
+                        <p>New users this week</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header orders">
+                        Pending Orders
+                    </div>
+                    <div class="card-body">
+                        <h3>75</h3>
+                        <p>Orders to be processed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header notifications">
+                        Notifications
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>New sale recorded!</li>
+                            <li>New user registered</li>
+                            <li>Pending order alert</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
